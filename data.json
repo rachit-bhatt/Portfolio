@@ -1,0 +1,37 @@
+{
+  "name": "Rachit Bhatt",
+  "email": "rachitbhatt2000@gmail.com",
+  "phone": "4378082909",
+  "countrycode": "+1",
+  "title": "Full-Stack Software Developer | Building Innovative Solutions",
+  "skills": [
+    "JavaScript",
+    "Python",
+    "React",
+    "Node.js",
+    "HTML/CSS",
+    "SQL",
+    "Git",
+    "API Design"
+  ],
+  "projects": [
+    {
+      "id": 1,
+      "title": "E-Commerce Platform",
+      "tech": "React, Node.js, MongoDB",
+      "description": "Full-stack e-commerce application with user authentication, product management, and secure payment integration."
+    },
+    {
+      "id": 2,
+      "title": "Task Management App",
+      "tech": "JavaScript, Firebase",
+      "description": "Collaborative task management application with real-time updates, user roles, and cloud synchronization."
+    },
+    {
+      "id": 3,
+      "title": "Weather Dashboard",
+      "tech": "React, API Integration",
+      "description": "Interactive weather application displaying real-time conditions, forecasts, and location-based data visualization."
+    }
+  ]
+}
