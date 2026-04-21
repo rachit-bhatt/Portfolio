@@ -4,89 +4,278 @@
     <meta http-equiv="refresh" content="5" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Software Developer Portfolio</title>
+    <title>Portfolio</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <nav>
-            <div class="logo">DevPortfolio</div>
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <!-- <li><a href="#skills">Skills</a></li> -->
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
+    <!-- Animated Background -->
+    <div class="matrix-bg"></div>
+    <div class="particles"></div>
 
-    <div class="container">
-        <section id="home" class="hero">
-            <h1>John Developer</h1>
-            <p>Full-Stack Software Developer | Building Innovative Solutions</p>
-            <a href="#contact" class="btn">Get In Touch</a>
-        </section>
+    <!-- Navigation -->
+    <nav class="nav-container">
+        <div class="nav-brand">
+            <span class="brand-text">NEXUS</span>
+            <span class="brand-glow"></span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#home" class="nav-link active">HOME</a></li>
+            <li><a href="#about" class="nav-link">ABOUT</a></li>
+            <li><a href="#skills" class="nav-link">SKILLS</a></li>
+            <li><a href="#projects" class="nav-link">PROJECTS</a></li>
+            <li><a href="#contact" class="nav-link">CONTACT</a></li>
+        </ul>
+        <div class="nav-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
 
-        <!--
-        <section id="skills">
-            <h2>Skills</h2>
-            <div class="skills-grid">
-                <div class="skill-item">JavaScript</div>
-                <div class="skill-item">Python</div>
-                <div class="skill-item">React</div>
-                <div class="skill-item">Node.js</div>
-                <div class="skill-item">HTML/CSS</div>
-                <div class="skill-item">SQL</div>
-                <div class="skill-item">Git</div>
-                <div class="skill-item">API Design</div>
-            </div>
-        </section>
-        -->
-
-        <section id="projects">
-            <h2>Featured Projects</h2>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3>E-Commerce Platform</h3>
-                        <p style="margin: 0; font-size: 0.9rem;">React, Node.js, MongoDB</p>
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">
+                    <span class="title-main">CYBER</span>
+                    <span class="title-accent">DEVELOPER</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Crafting digital realities in the quantum age
+                </p>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">50+</span>
+                        <span class="stat-label">Projects</span>
                     </div>
-                    <div class="project-body">
-                        <p>Full-stack e-commerce application with user authentication, product management, and secure payment integration.</p>
-                        <a href="#" class="project-link">View Project →</a>
+                    <div class="stat-item">
+                        <span class="stat-number">5+</span>
+                        <span class="stat-label">Years</span>
                     </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3>Task Management App</h3>
-                        <p style="margin: 0; font-size: 0.9rem;">JavaScript, Firebase</p>
-                    </div>
-                    <div class="project-body">
-                        <p>Collaborative task management application with real-time updates, user roles, and cloud synchronization.</p>
-                        <a href="#" class="project-link">View Project →</a>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3>Weather Dashboard</h3>
-                        <p style="margin: 0; font-size: 0.9rem;">React, API Integration</p>
-                    </div>
-                    <div class="project-body">
-                        <p>Interactive weather application displaying real-time conditions, forecasts, and location-based data visualization.</p>
-                        <a href="#" class="project-link">View Project →</a>
+                    <div class="stat-item">
+                        <span class="stat-number">100%</span>
+                        <span class="stat-label">Cyber</span>
                     </div>
                 </div>
             </div>
-        </section>
-    </div>
+            <div class="hero-visual">
+                <div class="hologram-container">
+                    <div class="hologram-ring"></div>
+                    <div class="hologram-core"></div>
+                    <div class="hologram-particles"></div>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <span>SCROLL</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
 
-    <footer id="contact">
-        <h2 style="color: #fff;">Get In Touch</h2>
-        <p>Email: john@example.com | Phone: +1 (555) 123-4567</p>
-        <p style="margin-top: 1rem; font-size: 0.9rem;">© 2024 John Developer. All rights reserved.</p>
-    </footer>
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="section-header">
+            <h2 class="section-title">ABOUT</h2>
+            <div class="section-divider"></div>
+        </div>
+        <div class="about-content">
+            <div class="about-text">
+                <p class="about-description">
+                    I am a cybernetic developer operating at the intersection of artificial intelligence,
+                    quantum computing, and immersive digital experiences. My neural networks are trained
+                    in multiple programming languages and frameworks.
+                </p>
+                <div class="about-grid">
+                    <div class="about-card">
+                        <div class="card-icon">🤖</div>
+                        <h3>AI Integration</h3>
+                        <p>Implementing machine learning algorithms and neural networks</p>
+                    </div>
+                    <div class="about-card">
+                        <div class="card-icon">⚡</div>
+                        <h3>High Performance</h3>
+                        <p>Optimizing code for quantum-speed execution</p>
+                    </div>
+                    <div class="about-card">
+                        <div class="card-icon">🔒</div>
+                        <h3>Cyber Security</h3>
+                        <p>Fortifying digital fortresses against quantum threats</p>
+                    </div>
+                </div>
+            </div>
+            <div class="about-visual">
+                <div class="code-matrix">
+                    <div class="matrix-line">01010101 01100001 01101110</div>
+                    <div class="matrix-line">function() { return future; }</div>
+                    <div class="matrix-line">import { reality } from 'matrix';</div>
+                    <div class="matrix-line">const ai = new Intelligence();</div>
+                    <div class="matrix-line">while(true) { innovate(); }</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills-section">
+        <div class="section-header">
+            <h2 class="section-title">SKILLS</h2>
+            <div class="section-divider"></div>
+        </div>
+        <div class="skills-container">
+            <div class="skill-category">
+                <h3 class="category-title">Programming Languages</h3>
+                <div class="skill-grid">
+                    <div class="skill-item">
+                        <span class="skill-name">Python</span>
+                        <div class="skill-bar">
+                            <div class="skill-fill" style="width: 95%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">JavaScript</span>
+                        <div class="skill-bar">
+                            <div class="skill-fill" style="width: 90%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">C++</span>
+                        <div class="skill-bar">
+                            <div class="skill-fill" style="width: 85%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h3 class="category-title">Technologies</h3>
+                <div class="skill-grid">
+                    <div class="skill-item">
+                        <span class="skill-name">AI/ML</span>
+                        <div class="skill-bar">
+                            <div class="skill-fill" style="width: 92%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">React</span>
+                        <div class="skill-bar">
+                            <div class="skill-fill" style="width: 88%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Node.js</span>
+                        <div class="skill-bar">
+                            <div class="skill-fill" style="width: 85%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects-section">
+        <div class="section-header">
+            <h2 class="section-title">PROJECTS</h2>
+            <div class="section-divider"></div>
+        </div>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-header">
+                    <h3>Neural Network OS</h3>
+                    <span class="project-type">AI System</span>
+                </div>
+                <p class="project-description">
+                    An operating system powered by neural networks, capable of self-learning
+                    and adaptive behavior patterns.
+                </p>
+                <div class="project-tech">
+                    <span>Python</span>
+                    <span>TensorFlow</span>
+                    <span>Kubernetes</span>
+                </div>
+                <div class="project-links">
+                    <a href="#" class="project-link">View Demo</a>
+                    <a href="#" class="project-link">Source Code</a>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-header">
+                    <h3>Quantum Encryptor</h3>
+                    <span class="project-type">Security</span>
+                </div>
+                <p class="project-description">
+                    Military-grade encryption using quantum computing principles,
+                    unbreakable by classical computers.
+                </p>
+                <div class="project-tech">
+                    <span>C++</span>
+                    <span>Quantum Gates</span>
+                    <span>Cryptography</span>
+                </div>
+                <div class="project-links">
+                    <a href="#" class="project-link">View Demo</a>
+                    <a href="#" class="project-link">Source Code</a>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-header">
+                    <h3>Holo Interface</h3>
+                    <span class="project-type">UI/UX</span>
+                </div>
+                <p class="project-description">
+                    Immersive holographic user interface for AR/VR applications,
+                    featuring gesture recognition and neural feedback.
+                </p>
+                <div class="project-tech">
+                    <span>React</span>
+                    <span>WebGL</span>
+                    <span>Three.js</span>
+                </div>
+                <div class="project-links">
+                    <a href="#" class="project-link">View Demo</a>
+                    <a href="#" class="project-link">Source Code</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="section-header">
+            <h2 class="section-title">CONTACT</h2>
+            <div class="section-divider"></div>
+        </div>
+        <div class="contact-content">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <div class="contact-icon">📧</div>
+                    <span>cyber.dev@nexus.ai</span>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">📍</div>
+                    <span>Digital Realm, Sector 7G</span>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">🔗</div>
+                    <span>github.com/cyber-nexus</span>
+                </div>
+            </div>
+            <div class="contact-form">
+                <form class="cyber-form">
+                    <div class="form-group">
+                        <input type="text" placeholder="Your Name" class="form-input">
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="Your Email" class="form-input">
+                    </div>
+                    <div class="form-group">
+                        <textarea placeholder="Your Message" class="form-textarea"></textarea>
+                    </div>
+                    <button type="submit" class="form-submit">TRANSMIT</button>
+                </form>
+            </div>
+        </div>
+    </section>
 
     <script src="script.js"></script>
 </body>
