@@ -6,7 +6,7 @@ const portfolioData = {
   "email": "rachitbhatt2000@gmail.com",
   "linkedin": "https://www.linkedin.com/in/rachit-bhatt",
   "github": "https://github.com/rachit-bhatt",
-  "title": "Full-Stack Software Developer | Building Innovative Solutions",
+  "title": "Full-Stack Software Developer",
   "summary": "Passionate software developer with experience in full-stack development, data analysis, and AI/ML. Skilled in modern technologies and agile methodologies.",
   "technicalSkills": {
     "tools": [
