@@ -1,7 +1,8 @@
-{
+// Portfolio data - separated for better organization
+const portfolioData = {
   "name": "Rachit Bhatt",
   "location": "Toronto, ON",
-  "phone": "437-808-2909",
+  "phone": "4378082909",
   "email": "rachitbhatt2000@gmail.com",
   "linkedin": "https://www.linkedin.com/in/rachit-bhatt",
   "github": "https://github.com/rachit-bhatt",
@@ -138,4 +139,4 @@
       "date": "Feb 2019"
     }
   ]
-}
+};

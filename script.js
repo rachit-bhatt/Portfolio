@@ -1,3 +1,5 @@
+//#region Sci-Fi Portfolio JavaScript
+
 // Sci-Fi Portfolio JavaScript
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -42,28 +44,25 @@ function initNavigation() {
             const navLinks = document.querySelector('.nav-links');
             navLinks.classList.toggle('active');
         });
-    }
 
-    // Update active navigation on scroll
-    window.addEventListener('scroll', function() {
-        const sections = document.querySelectorAll('section');
-        const scrollPosition = window.scrollY + 100;
+    const sections = document.querySelectorAll('section');
+    const scrollPosition = window.scrollY + 100;
 
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.offsetHeight;
-            const sectionId = section.getAttribute('id');
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.offsetHeight;
+        const sectionId = section.getAttribute('id');
 
-            if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-                navLinks.forEach(link => {
-                    link.classList.remove('active');
-                    if (link.getAttribute('href') === `#${sectionId}`) {
-                        link.classList.add('active');
-                    }
-                });
-            }
-        });
+        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${sectionId}`) {
+                    link.classList.add('active');
+                }
+            });
+        }
     });
+    }
 }
 
 // Scroll effects and animations
@@ -245,3 +244,192 @@ function initMatrixRain() {
 // Initialize advanced effects if desired
 // initTypingEffect(); // Uncomment for typing effect
 // initMatrixRain(); // Uncomment for matrix rain background
+
+//#endregion
+
+// Portfolio data embedded directly (no CORS issues!)
+// NOTE: Data is now in data.js for better file organization
+// The portfolioData constant is available globally from data.js
+
+// Function to load and display portfolio data
+function loadPortfolioData() {
+    try {
+        // Use embedded data instead of fetch
+        const data = portfolioData;
+        console.log('Portfolio data loaded successfully:', data);
+
+        // Update the DOM with portfolio data
+        updatePortfolioWithData(data);
+
+        return data;
+    } catch (error) {
+        console.error('Error loading portfolio data:', error);
+        showPortfolioError();
+        return null;
+    }
+}
+
+// Function to update portfolio with data
+function updatePortfolioWithData(data) {
+    // Update basic info
+    const nameElement = document.getElementById('name');
+    if (nameElement) nameElement.textContent = data.name || '';
+
+    const locationElement = document.getElementById('location');
+    if (locationElement) locationElement.textContent = data.location || '';
+
+    const emailElement = document.getElementById('email');
+    if (emailElement) emailElement.textContent = data.email || '';
+
+    const phoneElement = document.getElementById('phone');
+    if (phoneElement) phoneElement.textContent = data.phone || '';
+
+    const linkedinElement = document.getElementById('linkedin');
+    if (linkedinElement) {
+        linkedinElement.textContent = data.linkedin || '';
+        linkedinElement.href = data.linkedin || '#';
+    }
+
+    const githubElement = document.getElementById('github');
+    if (githubElement) {
+        githubElement.textContent = data.github || '';
+        githubElement.href = data.github || '#';
+    }
+
+    // Update title and summary
+    const titleElement = document.querySelector('.hero-title');
+    if (titleElement) titleElement.textContent = data.title || '';
+
+    const summaryElement = document.querySelector('.hero-subtitle');
+    if (summaryElement) summaryElement.textContent = data.summary || '';
+
+    // Update skills
+    updateSkillsSection(data.technicalSkills);
+
+    // Update experience
+    updateExperienceSection(data.experience);
+
+    // Update projects
+    updateProjectsSection(data.projects);
+
+    // Update education
+    updateEducationSection(data.education);
+
+    console.log('Portfolio updated with data');
+}
+
+// Function to update skills section
+function updateSkillsSection(skills) {
+    if (!skills) return;
+
+    // Update languages
+    const languagesList = document.querySelector('.languages-list');
+    if (languagesList && skills.languages) {
+        languagesList.innerHTML = skills.languages.map(lang => `<li>${lang}</li>`).join('');
+    }
+
+    // Update frameworks
+    const frameworksList = document.querySelector('.frameworks-list');
+    if (frameworksList && skills.frameworks) {
+        frameworksList.innerHTML = skills.frameworks.map(fw => `<li>${fw}</li>`).join('');
+    }
+
+    // Update tools
+    const toolsList = document.querySelector('.tools-list');
+    if (toolsList && skills.tools) {
+        toolsList.innerHTML = skills.tools.map(tool => `<li>${tool}</li>`).join('');
+    }
+
+    // Update processes
+    const processesList = document.querySelector('.processes-list');
+    if (processesList && skills.processes) {
+        processesList.innerHTML = skills.processes.map(process => `<li>${process}</li>`).join('');
+    }
+}
+
+// Function to update experience section
+function updateExperienceSection(experience) {
+    if (!experience) return;
+
+    const experienceContainer = document.querySelector('.experience-list');
+    if (experienceContainer) {
+        experienceContainer.innerHTML = experience.map(exp => `
+            <div class="experience-item">
+                <h3>${exp.position}</h3>
+                <h4>${exp.company}${exp.location ? ` - ${exp.location}` : ''}</h4>
+                <p class="date">${exp.startDate} - ${exp.endDate}</p>
+                <ul>
+                    ${exp.responsibilities.map(resp => `<li>${resp}</li>`).join('')}
+                </ul>
+            </div>
+        `).join('');
+    }
+}
+
+// Function to update projects section
+function updateProjectsSection(projects) {
+    if (!projects) return;
+
+    const projectsContainer = document.querySelector('.projects-grid');
+    if (projectsContainer) {
+        projectsContainer.innerHTML = projects.map(project => `
+            <div class="project-card">
+                <h3>${project.title}</h3>
+                <p class="project-duration">${project.duration}</p>
+                <p class="project-tech">${project.techStack}</p>
+                <ul class="project-features">
+                    ${project.features.map(feature => `<li>${feature}</li>`).join('')}
+                </ul>
+                ${project.github ? `<a href="${project.github}" target="_blank" class="project-link">View on GitHub</a>` : ''}
+            </div>
+        `).join('');
+    }
+}
+
+// Function to update education section
+function updateEducationSection(education) {
+    if (!education) return;
+
+    const educationContainer = document.querySelector('.education-list');
+    if (educationContainer) {
+        educationContainer.innerHTML = education.map(edu => `
+            <div class="education-item">
+                <h3>${edu.degree}</h3>
+                <h4>${edu.institution}</h4>
+                <p class="date">${edu.startDate} - ${edu.endDate}</p>
+            </div>
+        `).join('');
+    }
+}
+
+// Function to show error message
+function showPortfolioError() {
+    const errorDiv = document.createElement('div');
+    errorDiv.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: #ff4444;
+        color: white;
+        padding: 15px;
+        border-radius: 5px;
+        z-index: 1000;
+        max-width: 300px;
+    `;
+    errorDiv.innerHTML = `
+        <strong>Portfolio Error:</strong><br>
+        Unable to load portfolio data.<br>
+        <small>Try opening index.html directly in your browser instead of using a file:// URL.</small>
+    `;
+    document.body.appendChild(errorDiv);
+
+    setTimeout(() => {
+        errorDiv.remove();
+    }, 5000);
+}
+
+// Initialize portfolio when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    // Load portfolio data immediately (no fetch needed!)
+    loadPortfolioData();
+});

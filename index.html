@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta http-equiv="refresh" content="5" />
+    <meta http-equiv="refresh" content="60" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
+    <title>Rachit Bhatt - Portfolio</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
@@ -249,15 +249,17 @@
             <div class="contact-info">
                 <div class="contact-item">
                     <div class="contact-icon">📧</div>
-                    <span>cyber.dev@nexus.ai</span>
+                    <span id="email"></span>
                 </div>
                 <div class="contact-item">
                     <div class="contact-icon">📍</div>
-                    <span>Digital Realm, Sector 7G</span>
+                    <span id="location"></span>
                 </div>
                 <div class="contact-item">
                     <div class="contact-icon">🔗</div>
-                    <span>github.com/cyber-nexus</span>
+                    <a href="https://github.com/rachit-bhatt" class="contact-link" target="_blank">
+                        <span id="github"></span>
+                    </a>
                 </div>
             </div>
             <div class="contact-form">
@@ -277,6 +279,8 @@
         </div>
     </section>
 
+    <!-- Load portfolio data first, then main script -->
+    <script src="data.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
