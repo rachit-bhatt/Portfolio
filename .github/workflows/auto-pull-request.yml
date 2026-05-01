@@ -1,0 +1,98 @@
+name: Auto PR from Rachit to main
+
+on:
+  push:
+    branches:
+      - 'Rachit'
+
+permissions:
+  contents: write
+  pull-requests: write
+  checks: write
+
+jobs:
+  validate:
+    name: Validate files
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate portfolio files exist
+        run: |
+          test -f index.html
+          test -f script.js
+          test -f styles.css
+          test -f data.js
+
+  create_approve_merge:
+    name: Create, approve, and merge PR
+    needs: validate
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Create or reuse PR from Rachit to main
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const branch = 'Rachit';
+            const base = 'main';
+            const title = 'Auto-generated PR from Rachit Branch to main';
+            const body = `This pull request was automatically created from the \\`${branch}\\` branch to the \\`${base}\\` branch. It is approved automatically and merged when possible.`;
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+
+            // Search for existing open PR from the branch to main
+            const existing = await github.rest.pulls.list({
+              owner,
+              repo,
+              state: 'open',
+              head: `${owner}:${branch}`,
+              base
+            });
+
+            let pr;
+            if (existing.data.length > 0) {
+              pr = existing.data[0];
+              core.info(`Found existing PR #${pr.number}`);
+            } else {
+              pr = (await github.rest.pulls.create({
+                owner,
+                repo,
+                title,
+                head: branch,
+                base,
+                body
+              })).data;
+              core.info(`Created PR #${pr.number}`);
+            }
+
+            // Approve PR if not already approved by the bot
+            const reviews = await github.rest.pulls.listReviews({
+              owner,
+              repo,
+              pull_number: pr.number
+            });
+            const alreadyApproved = reviews.data.some(review => review.user.login === context.actor && review.state === 'APPROVED');
+            if (!alreadyApproved) {
+              await github.rest.pulls.createReview({
+                owner,
+                repo,
+                pull_number: pr.number,
+                event: 'APPROVE',
+                body: 'Automatically approving this PR for merge.'
+              });
+              core.info('Approved PR');
+            } else {
+              core.info('PR already approved by this workflow actor');
+            }
+
+            // Merge the PR automatically
+            const mergeResult = await github.rest.pulls.merge({
+              owner,
+              repo,
+              pull_number: pr.number,
+              merge_method: 'merge',
+              commit_title: `Merge PR #${pr.number}: ${title}`,
+              commit_message: `Automatically merged pull request from ${branch} to ${base}.`
+            });
+            core.info(`Merged PR: ${mergeResult.data.message}`);
