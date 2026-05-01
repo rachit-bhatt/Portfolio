@@ -141,29 +141,58 @@ function initFormHandling() {
     const form = document.querySelector('.cyber-form');
 
     if (form) {
-        form.addEventListener('submit', function(e) {
+        form.addEventListener('submit', async function(e) {
             e.preventDefault();
 
-            // Get form data
             const formData = new FormData(form);
-            const data = Object.fromEntries(formData);
+            const visitorName = formData.get('name')?.toString().trim() || 'Website Visitor';
+            const visitorEmail = formData.get('email')?.toString().trim() || 'No email provided';
+            const visitorMessage = formData.get('message')?.toString().trim() || 'No message provided';
 
-            // Simulate form submission
+            const recipient = (window.portfolioData && window.portfolioData.email) ? window.portfolioData.email : 'rachitbhatt2000@gmail.com';
+            const subject = `Portfolio Contact from ${visitorName}`;
+            const emailBody = `Name: ${visitorName}\nEmail: ${visitorEmail}\n\nMessage:\n${visitorMessage}\n\nSent from the portfolio contact form.`;
+            const mailtoLink = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
+
             const submitBtn = form.querySelector('.form-submit');
             const originalText = submitBtn.textContent;
-
             submitBtn.textContent = 'TRANSMITTING...';
             submitBtn.disabled = true;
 
-            // Simulate API call
+            // Attempt to open the user's email client with a prefilled email.
+            const anchor = document.createElement('a');
+            anchor.href = mailtoLink;
+            anchor.style.display = 'none';
+            document.body.appendChild(anchor);
+            anchor.click();
+            document.body.removeChild(anchor);
+
+            const clipboardPayload = `To: ${recipient}\nSubject: ${subject}\n\n${emailBody}`;
+            let copySuccess = false;
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                try {
+                    await navigator.clipboard.writeText(clipboardPayload);
+                    copySuccess = true;
+                } catch (error) {
+                    console.warn('Clipboard copy failed:', error);
+                }
+            }
+
             setTimeout(() => {
                 submitBtn.textContent = 'TRANSMITTED!';
                 submitBtn.style.background = 'linear-gradient(45deg, #00ff00, #00ffff)';
+                submitBtn.style.color = '#000';
+
+                const message = copySuccess
+                    ? 'If your email client did not open, the email contents have been copied to your clipboard so you can paste them into your mail app.'
+                    : 'Your email client should open with the message prefilled. If it does not, please copy the contact details manually.';
+                alert(message);
 
                 setTimeout(() => {
                     submitBtn.textContent = originalText;
                     submitBtn.disabled = false;
                     submitBtn.style.background = '';
+                    submitBtn.style.color = '';
                     form.reset();
                 }, 2000);
             }, 1500);
