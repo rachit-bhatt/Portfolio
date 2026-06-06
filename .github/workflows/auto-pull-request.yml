@@ -32,7 +32,7 @@ jobs:
       - name: Create or reuse PR from Rachit to main
         uses: actions/github-script@v7
         with:
-          github-token: ${{ secrets.ACTION_PAT }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const branch = 'Rachit';
             const base = 'main';
@@ -53,7 +53,7 @@ jobs:
             let pr;
             if (existing.data.length > 0) {
               pr = existing.data[0];
-              console.log(`Found existing PR #${pr.number}`);
+              core.info(`Found existing PR #${pr.number}`);
             } else {
               pr = (await github.rest.pulls.create({
                 owner,
@@ -63,37 +63,30 @@ jobs:
                 base,
                 body
               })).data;
-              console.log(`Created PR #${pr.number}`);
+              core.info(`Created PR #${pr.number}`);
             }
 
-            // Skip approval if the actor is the PR author (can't approve own PR)
-            const prAuthor = pr.user.login;
-            const actor = context.actor;
-            if (prAuthor === actor) {
-              console.log('Skipping approval: actor is PR author');
-            } else {
-              // Approve PR if not already approved by this actor
-              const reviews = await github.rest.pulls.listReviews({
+            // Approve PR if not already approved by the bot
+            const reviews = await github.rest.pulls.listReviews({
+              owner,
+              repo,
+              pull_number: pr.number
+            });
+            const alreadyApproved = reviews.data.some(review => review.user.login === context.actor && review.state === 'APPROVED');
+            if (!alreadyApproved) {
+              await github.rest.pulls.createReview({
                 owner,
                 repo,
-                pull_number: pr.number
+                pull_number: pr.number,
+                event: 'APPROVE',
+                body: 'Automatically approving this PR for merge.'
               });
-              const alreadyApproved = reviews.data.some(review => review.user.login === actor && review.state === 'APPROVED');
-              if (!alreadyApproved) {
-                await github.rest.pulls.createReview({
-                  owner,
-                  repo,
-                  pull_number: pr.number,
-                  event: 'APPROVE',
-                  body: 'Automatically approving this PR for merge.'
-                });
-                console.log('Approved PR');
-              } else {
-                console.log('PR already approved by this workflow actor');
-              }
+              core.info('Approved PR');
+            } else {
+              core.info('PR already approved by this workflow actor');
             }
 
-            // Merge the PR automatically (requires the actor to have bypass/merge permissions)
+            // Merge the PR automatically
             const mergeResult = await github.rest.pulls.merge({
               owner,
               repo,
@@ -102,4 +95,4 @@ jobs:
               commit_title: `Merge PR #${pr.number}: ${title}`,
               commit_message: `Automatically merged pull request from ${branch} to ${base}.`
             });
-            console.log(`Merged PR: ${mergeResult.data.message}`);
+            core.info(`Merged PR: ${mergeResult.data.message}`);
