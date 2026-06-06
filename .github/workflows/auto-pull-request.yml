@@ -37,7 +37,7 @@ jobs:
             const branch = 'Rachit';
             const base = 'main';
             const title = 'Auto-generated PR from Rachit Branch to main';
-            const body = `This pull request was automatically created from the \\`${branch}\\` branch to the \\`${base}\\` branch. It is approved automatically and merged when possible.`;
+              const body = `This pull request was automatically created from the '${branch}' branch to the '${base}' branch. It is approved automatically and merged when possible.`;
             const owner = context.repo.owner;
             const repo = context.repo.repo;
 
